@@ -596,8 +596,8 @@
         "调用 POST /api/user/login 接口",
         "验证登录成功返回用户信息和 token"
       ],
-      "passes": false,
-      "testStatus": "pending",
+      "passes": true,
+      "testStatus": "passed",
       "note": "需要集成 JWT 或 Session 管理"
     },
     {
