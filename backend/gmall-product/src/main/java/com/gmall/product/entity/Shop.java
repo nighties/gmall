@@ -19,7 +19,7 @@ public class Shop implements Serializable {
     /**
      * 商家 ID
      */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
