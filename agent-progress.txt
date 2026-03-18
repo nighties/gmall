@@ -14,22 +14,34 @@
 **工作内容**:
 - ✅ 创建项目基础结构
 - ✅ 创建 feature_list.json (包含 60 个核心功能)
-  - 40 个前端功能 (小程序页面)
-  - 20 个后端功能 (Spring Boot API)
 - ✅ 创建 README.md 项目说明文档
 - ✅ 创建本进度日志文件
 - ✅ 创建 init.ps1 初始化脚本
 - ✅ 创建数据库初始化脚本 (docs/db/gmall.sql)
 - ✅ 创建前端 uni-app 项目基础结构
-  - 配置 package.json, vite.config.js
-  - 配置 manifest.json, pages.json
-  - 创建主入口文件 main.js 和 App.vue
-  - 创建首页 (pages/index/index.vue)
-  - 创建页面目录结构 (index, search, goods, cart, order, user)
 - ✅ 创建后端 Spring Boot 项目基础结构
-  - 配置 pom.xml (依赖：Spring Boot, MyBatis-Plus, JWT, Knife4j)
-  - 创建主应用类 GmallApplication.java
-  - 配置 application.yml (数据库、Redis、JWT 等)
+
+### Session #2 - 后端多模块重构
+**时间**: 2026-03-18  
+**Run ID**: refactor-001
+
+**工作内容**:
+- ✅ 重构后端为多模块 Spring Boot 项目
+- ✅ 创建父 POM (pom.xml) - 管理依赖版本和模块
+- ✅ 创建 gmall-common 模块 (通用工具、常量、异常)
+  - Result.java (统一返回结果)
+  - PageResult.java (分页结果)
+- ✅ 创建 gmall-user 模块 (用户服务)
+  - User.java (用户实体)
+  - UserMapper.java (Mapper 接口)
+- ✅ 创建 gmall-product 模块 (商品服务)
+- ✅ 创建 gmall-order 模块 (订单服务)
+- ✅ 创建 gmall-cart 模块 (购物车服务)
+- ✅ 创建 gmall-coupon 模块 (优惠券服务)
+- ✅ 创建 gmall-start 模块 (启动模块)
+  - GmallStartApplication.java (启动类)
+  - application.yml (配置文件)
+- ✅ 创建后端多模块架构文档 (README_MODULES.md)
 
 **功能完成情况**:
 - 总功能数：60
