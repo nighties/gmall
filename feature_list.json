@@ -612,8 +612,8 @@
         "传递排序参数 sortBy, sortOrder",
         "验证返回商品列表和总数"
       ],
-      "passes": false,
-      "testStatus": "pending",
+      "passes": true,
+      "testStatus": "passed",
       "note": "需要支持多条件组合查询"
     },
     {
@@ -626,8 +626,8 @@
         "验证返回商品详细信息",
         "验证包含商品图片、规格、库存等信息"
       ],
-      "passes": false,
-      "testStatus": "pending",
+      "passes": true,
+      "testStatus": "passed",
       "note": "需要关联查询商品图片、规格等表"
     },
     {
@@ -833,8 +833,8 @@
         "验证返回分类树形结构",
         "验证包含所有子分类"
       ],
-      "passes": false,
-      "testStatus": "pending",
+      "passes": true,
+      "testStatus": "passed",
       "note": "需要递归查询分类"
     },
     {
