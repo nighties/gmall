@@ -1,0 +1,886 @@
+{
+  "features": [
+    {
+      "id": "feature-001",
+      "category": "frontend",
+      "description": "用户可以打开小程序并看到首页商品列表（仿美团首页）",
+      "priority": "high",
+      "steps": [
+        "启动微信开发者工具",
+        "选择对应项目",
+        "验证首页展示「附近美食」「外卖」「酒店」等分类",
+        "验证加载动画与数据渲染",
+        "验证分类 Tab 选中态切换"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "包含轮播图、分类导航、头部搜索栏"
+    },
+    {
+      "id": "feature-002",
+      "category": "frontend",
+      "description": "点击首页推荐商品卡片，跳转到商品详情页",
+      "priority": "high",
+      "steps": [
+        "在首页点击任意商品卡片",
+        "验证跳转到 /pages/goods/detail",
+        "验证商品名称、价格、销量等信息正确展示",
+        "验证顶部返回按钮可用"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "可复用已有的商品详情模板"
+    },
+    {
+      "id": "feature-003",
+      "category": "frontend",
+      "description": "商品详情页展示商品图文详情、规格选择和加入购物车",
+      "priority": "high",
+      "steps": [
+        "在商品详情页点击「选择规格」",
+        "验证规格弹层展示（规格选项、库存数量）",
+        "选择规格后点击「加入购物车」",
+        "验证购物车数量更新、弹出「加入成功」提示",
+        "验证加入购物车后「立即下单」按钮高亮"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "规格数据需要模拟后端返回"
+    },
+    {
+      "id": "feature-004",
+      "category": "frontend",
+      "description": "用户可以将商品加入/移除购物车，并修改数量",
+      "priority": "high",
+      "steps": [
+        "在商品详情页点击「加入购物车」",
+        "进入「购物车」页面",
+        "验证商品出现在购物车列表中",
+        "点击商品数量 +/- 按钮",
+        "验证数量变更，对应的总价同步更新"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要模拟本地存储 + 计算总价"
+    },
+    {
+      "id": "feature-005",
+      "category": "frontend",
+      "description": "用户在购物车列表中可以选择单个或全部商品下单",
+      "priority": "high",
+      "steps": [
+        "在购物车页面点击左侧单选按钮",
+        "验证所选商品在结算按钮上的状态",
+        "点击「去结算」按钮",
+        "验证跳转到确认订单页",
+        "验证展示所选商品列表及总价"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "依赖上一个功能的选中逻辑"
+    },
+    {
+      "id": "feature-006",
+      "category": "frontend",
+      "description": "用户填写收货地址并选择配送时间（外卖配送模式）",
+      "priority": "high",
+      "steps": [
+        "在确认订单页点击「收货地址」",
+        "进入「收货地址管理」",
+        "新增或选择已有地址",
+        "点击「配送时间」，选择「立即送达」或自定义时间",
+        "验证回显到确认订单页"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "展示逻辑应模仿美团外卖地址选择"
+    },
+    {
+      "id": "feature-007",
+      "category": "frontend",
+      "description": "用户在确认订单页查看商品总价与优惠信息，并确认支付",
+      "priority": "high",
+      "steps": [
+        "在确认订单页查看「商品小计」「满减优惠」「配送费」等",
+        "选择「在线支付」按钮",
+        "调起微信支付（本地模拟或跳转官方组件）",
+        "验证支付成功回调与订单状态更新"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要使用微信小程序支付接口"
+    },
+    {
+      "id": "feature-008",
+      "category": "frontend",
+      "description": "用户查看个人中心（账户信息、优惠券、我的订单）",
+      "priority": "high",
+      "steps": [
+        "从首页点击「我的」进入用户中心",
+        "验证展示头像、昵称、手机号等基础信息",
+        "点击「我的订单」，展示「全部/待付款/待收货/已完成」等状态",
+        "点击「优惠券」，验证列表展示"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "与现有用户系统对齐"
+    },
+    {
+      "id": "feature-009",
+      "category": "frontend",
+      "description": "用户在个人中心查看/编辑个人资料（头像、昵称等）",
+      "priority": "high",
+      "steps": [
+        "在「我的」页面点击头像/昵称",
+        "进入「编辑资料」页面",
+        "修改信息后点击保存",
+        "验证信息更新成功，页面回显"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需模拟本地数据保存"
+    },
+    {
+      "id": "feature-010",
+      "category": "frontend",
+      "description": "用户可以查看并使用自己的优惠券（包括满减、折扣等）",
+      "priority": "high",
+      "steps": [
+        "进入「我的优惠券」页面",
+        "展示「可用」「已使用」「已过期」三类",
+        "在确认订单页选择某张可用券",
+        "验证券后金额正确更新"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需结合用户中心和下单逻辑"
+    },
+    {
+      "id": "feature-011",
+      "category": "frontend",
+      "description": "用户可查看订单详情，包含商品列表、实付金额、配送信息等",
+      "priority": "high",
+      "steps": [
+        "在我的订单中选择某个订单",
+        "进入「订单详情」页",
+        "验证展示该订单下的商品、配送地址、联系电话",
+        "验证展示「订单状态」「实付金额」等"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "可复用现有订单详情组件"
+    },
+    {
+      "id": "feature-012",
+      "category": "frontend",
+      "description": "用户可以取消待付款订单",
+      "priority": "high",
+      "steps": [
+        "在「我的订单」中找到「待付款」订单",
+        "点击「取消订单」按钮",
+        "弹出确认提示框",
+        "点击「确认取消」，验证订单状态变为已取消"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需调用后端取消接口"
+    },
+    {
+      "id": "feature-013",
+      "category": "frontend",
+      "description": "用户可以进行「待收货」订单的确认收货操作",
+      "priority": "high",
+      "steps": [
+        "在「我的订单」中找到「待收货」订单",
+        "点击「确认收货」",
+        "弹出确认提示",
+        "点击「确认」后，验证订单状态变为「已完成」"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "同样依赖后端确认收货接口"
+    },
+    {
+      "id": "feature-014",
+      "category": "frontend",
+      "description": "用户可以在「我的」页面查看积分与积分使用记录",
+      "priority": "high",
+      "steps": [
+        "在「我的」页面点击「积分」入口",
+        "查看当前积分与累计获得/使用情况",
+        "点击查看「积分明细」，展示积分变化记录"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需定义积分计算规则"
+    },
+    {
+      "id": "feature-015",
+      "category": "frontend",
+      "description": "用户可以收到关于新订单、到店通知、配送进度等消息推送",
+      "priority": "medium",
+      "steps": [
+        "模拟用户完成订单后触发「新订单通知」",
+        "在「我的」→「消息中心」查看推送",
+        "点击具体消息，验证跳转到相应页面"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "可暂时模拟推送，之后接入真实推送服务"
+    },
+    {
+      "id": "feature-016",
+      "category": "frontend",
+      "description": "用户可以设置默认收货地址",
+      "priority": "medium",
+      "steps": [
+        "进入「收货地址管理」",
+        "为某条地址点击「设为默认」",
+        "验证该地址在确认订单页优先展示"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "多地址情况下默认逻辑"
+    },
+    {
+      "id": "feature-017",
+      "category": "frontend",
+      "description": "用户可以对已买到的商品进行「商品评价」和「追加评价」",
+      "priority": "medium",
+      "steps": [
+        "进入已完成订单的「商品详情」",
+        "点击「评价」按钮",
+        "填写评分、文字评价、上传图片",
+        "提交后查看「评价成功」提示并返回"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "应包含评分控件和多图上传"
+    },
+    {
+      "id": "feature-018",
+      "category": "frontend",
+      "description": "用户可以查看「常见问题」/「客服」入口，并发起在线咨询",
+      "priority": "medium",
+      "steps": [
+        "在「我的」页面点击「帮助中心」或「客服」",
+        "进入常见问题列表页或直接联系客服",
+        "填写/提交咨询内容"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "可先做静态页面，后续接入客服机器人"
+    },
+    {
+      "id": "feature-019",
+      "category": "frontend",
+      "description": "用户在「搜索页」可以按分类、价格、销量等条件筛选商品",
+      "priority": "medium",
+      "steps": [
+        "在首页点击搜索框",
+        "进入「搜索页」",
+        "尝试按「价格」「销量」「距离」等条件筛选",
+        "验证筛选条件叠加时结果更新"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "筛选项应复用美团搜索页设计"
+    },
+    {
+      "id": "feature-020",
+      "category": "frontend",
+      "description": "用户可以收藏/取消收藏某个商品",
+      "priority": "medium",
+      "steps": [
+        "在商品详情页点击「收藏」",
+        "验证图标变为已收藏状态",
+        "再次点击取消收藏",
+        "验证图标恢复未收藏状态"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "本地或远程保存用户收藏列表"
+    },
+    {
+      "id": "feature-021",
+      "category": "frontend",
+      "description": "用户在个人中心可查看「我的足迹」，展示最近浏览过的商品",
+      "priority": "medium",
+      "steps": [
+        "在「我的」点击「我的足迹」",
+        "展示最近浏览记录",
+        "点击某条足迹，重新跳转到该商品详情页"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "利用本地存储或后端用户行为数据"
+    },
+    {
+      "id": "feature-022",
+      "category": "frontend",
+      "description": "用户可以在「我的」页面使用「会员中心」，查看等级与权益",
+      "priority": "medium",
+      "steps": [
+        "点击「我的」→「会员中心」",
+        "展示当前会员等级与成长值",
+        "查看等级对应的权益（如免配送费、优先发货等）"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要设定会员等级规则"
+    },
+    {
+      "id": "feature-023",
+      "category": "frontend",
+      "description": "用户可以在「我的」页面查看「历史订单」中已删除订单的还原功能",
+      "priority": "medium",
+      "steps": [
+        "在「我的订单」→「已删除」中找到某条记录",
+        "点击「还原」按钮",
+        "验证该订单重新出现在「全部」或「已完成」中"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "如果后端没有删除逻辑，可只做还原 UI"
+    },
+    {
+      "id": "feature-024",
+      "category": "frontend",
+      "description": "用户在「确认收货」后可以对商品进行「立即追加评价」",
+      "priority": "medium",
+      "steps": [
+        "在「我的订单」中完成「待收货」",
+        "进入该订单的「商品详情」",
+        "点击「追加评价」按钮",
+        "填写追加内容后提交"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "与普通评价类似，只是额外说明是追加"
+    },
+    {
+      "id": "feature-025",
+      "category": "frontend",
+      "description": "用户在「首页」可以查看到「商家」的营业状态（营业中、已打烊、即将营业）",
+      "priority": "medium",
+      "steps": [
+        "在首页滚动到某一商家卡片",
+        "验证展示「营业中/已打烊/即将营业」文字与颜色",
+        "点击卡片时验证仍可下单（针对「营业中」场景）"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "配合后端商家营业时间逻辑"
+    },
+    {
+      "id": "feature-026",
+      "category": "frontend",
+      "description": "用户在「个人中心」中可以切换「当前城市」",
+      "priority": "medium",
+      "steps": [
+        "在「我的」页面点击「切换城市」",
+        "展示城市选择弹层或列表",
+        "选择某个城市后，验证首页展示对应城市的商家/商品"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "可模拟多个城市数据"
+    },
+    {
+      "id": "feature-027",
+      "category": "frontend",
+      "description": "用户在「商品详情页」可以查看该商品所属的「品类」（如汉堡、奶茶）",
+      "priority": "medium",
+      "steps": [
+        "进入任意商品详情页",
+        "在头部/底部查看该商品所属品类文案",
+        "点击品类名称时跳转到相关商品列表"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "品类数据可直接挂载在商品对象上"
+    },
+    {
+      "id": "feature-028",
+      "category": "frontend",
+      "description": "用户在「订单列表」中点击某个子项可查看该子项的详细信息",
+      "priority": "medium",
+      "steps": [
+        "在「我的订单」中找到某条包含多个商品的订单",
+        "点击任一子项",
+        "展示该子项「商品详情」页（含规格、数量、单价等）"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "涉及多商品订单拆分展示"
+    },
+    {
+      "id": "feature-029",
+      "category": "frontend",
+      "description": "用户在「首页」可以看到「附近商家」列表，并支持按距离排序",
+      "priority": "low",
+      "steps": [
+        "开启模拟地理位置",
+        "在首页查看「附近商家」入口",
+        "点击后展示商家列表，并支持「距离」「综合排序」切换"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要调用微信地理位置能力"
+    },
+    {
+      "id": "feature-030",
+      "category": "frontend",
+      "description": "用户可以保存多个收货地址并管理（添加、编辑、删除）",
+      "priority": "low",
+      "steps": [
+        "进入「收货地址管理」",
+        "点击「+ 新增收货地址」",
+        "填写完整地址并保存",
+        "修改地址或点击「删除」按钮，验证操作成功"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "展示多条地址条目及对应的编辑/删除操作"
+    },
+    {
+      "id": "feature-031",
+      "category": "frontend",
+      "description": "用户可以对地址进行「设为默认」及「编辑」操作",
+      "priority": "low",
+      "steps": [
+        "在地址列表中选择某条地址",
+        "点击「设为默认」，验证图标变为「默认地址」",
+        "点击「编辑」，修改信息后保存"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "默认地址在下单时自动带出"
+    },
+    {
+      "id": "feature-032",
+      "category": "frontend",
+      "description": "用户在「搜索页」中，对某个关键词进行「历史搜索」记录展示",
+      "priority": "low",
+      "steps": [
+        "在「搜索页」输入并搜索关键词",
+        "关闭搜索页后再次进入",
+        "查看「历史搜索」区域，展示最近搜索记录"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "使用本地存储实现历史记录"
+    },
+    {
+      "id": "feature-033",
+      "category": "frontend",
+      "description": "用户在「搜索页」可以对历史搜索记录进行「清空」",
+      "priority": "low",
+      "steps": [
+        "在「搜索页」点击「清除历史」",
+        "验证历史记录被清空",
+        "再次打开时不再展示历史条目"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "同步清空本地存储"
+    },
+    {
+      "id": "feature-034",
+      "category": "frontend",
+      "description": "用户在「分类页」中可以查看到一个完整的品类树（如美食、酒店）",
+      "priority": "low",
+      "steps": [
+        "从首页点击「全部分类」或「美食」等大类入口",
+        "进入「分类页面」",
+        "展示分类树状结构（一级分类下包含多级子类）"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "可做成树形结构组件"
+    },
+    {
+      "id": "feature-035",
+      "category": "frontend",
+      "description": "用户在「分类页」中点击子分类后能正确跳转到对应商品列表页",
+      "priority": "low",
+      "steps": [
+        "在「分类页」点击某一子分类",
+        "验证页面跳转到对应分类下的商品列表",
+        "验证展示内容与分类标签匹配"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "连接分类标识与商品列表逻辑"
+    },
+    {
+      "id": "feature-036",
+      "category": "frontend",
+      "description": "用户在「商品列表页」中可按「综合排序」「距离」「销量」等条件排序",
+      "priority": "low",
+      "steps": [
+        "进入「商品列表」",
+        "点击排序控件（如「综合」）",
+        "选择「距离」「销量」等排序方式",
+        "验证列表排序结果跟随改变"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要通过查询参数控制排序字段"
+    },
+    {
+      "id": "feature-037",
+      "category": "frontend",
+      "description": "用户在「首页」可以看到「为你推荐」的个性化商品列表",
+      "priority": "low",
+      "steps": [
+        "在首页滚动到底部或点击「为你推荐」",
+        "展示根据用户行为/偏好生成的商品列表",
+        "点击任意商品，跳转到详情页"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "可用 Mock 数据代替真实算法"
+    },
+    {
+      "id": "feature-038",
+      "category": "frontend",
+      "description": "用户在「首页」可以查看到「限时特价」、「满减」等营销标签",
+      "priority": "low",
+      "steps": [
+        "在首页商品卡片上查看「限时特价」「满减」等标签",
+        "点击进入对应商品或活动页面",
+        "验证展示文案与时间（如「剩 X 小时」）"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "展示样式需仿美团设计风格"
+    },
+    {
+      "id": "feature-039",
+      "category": "frontend",
+      "description": "用户在「确认订单页」可以看到「选择优惠券」按钮",
+      "priority": "low",
+      "steps": [
+        "在确认订单页，找到「选择优惠券」按钮",
+        "点击弹出优惠券列表",
+        "选择/取消选择后，验证价格计算更新"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要按业务规则展示可使用券"
+    },
+    {
+      "id": "feature-040",
+      "category": "frontend",
+      "description": "用户在「确认订单页」可以看到「买家留言」输入框",
+      "priority": "low",
+      "steps": [
+        "进入「确认订单页」",
+        "查看是否存在「买家留言」或「订单备注」输入框",
+        "输入文字后点击「提交订单」",
+        "验证备注随订单一起提交"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "留言字段需在下单接口中透传"
+    },
+    {
+      "id": "feature-041",
+      "category": "backend",
+      "description": "后端提供用户注册/登录接口（支持账号密码和微信授权登录）",
+      "priority": "high",
+      "steps": [
+        "调用 POST /api/user/register 接口",
+        "验证返回用户信息和 token",
+        "调用 POST /api/user/login 接口",
+        "验证登录成功返回用户信息和 token"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要集成 JWT 或 Session 管理"
+    },
+    {
+      "id": "feature-042",
+      "category": "backend",
+      "description": "后端提供商品列表查询接口（支持分页、筛选、排序）",
+      "priority": "high",
+      "steps": [
+        "调用 GET /api/products 接口",
+        "传递分页参数 page, size",
+        "传递筛选参数 category, priceRange",
+        "传递排序参数 sortBy, sortOrder",
+        "验证返回商品列表和总数"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要支持多条件组合查询"
+    },
+    {
+      "id": "feature-043",
+      "category": "backend",
+      "description": "后端提供商品详情查询接口",
+      "priority": "high",
+      "steps": [
+        "调用 GET /api/products/{id} 接口",
+        "验证返回商品详细信息",
+        "验证包含商品图片、规格、库存等信息"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要关联查询商品图片、规格等表"
+    },
+    {
+      "id": "feature-044",
+      "category": "backend",
+      "description": "后端提供购物车增删改查接口",
+      "priority": "high",
+      "steps": [
+        "调用 POST /api/cart/add 添加商品到购物车",
+        "调用 PUT /api/cart/update 修改商品数量",
+        "调用 DELETE /api/cart/remove 删除商品",
+        "调用 GET /api/cart/list 查询购物车列表",
+        "验证所有接口返回正确数据"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要支持批量操作"
+    },
+    {
+      "id": "feature-045",
+      "category": "backend",
+      "description": "后端提供订单创建接口",
+      "priority": "high",
+      "steps": [
+        "调用 POST /api/order/create 接口",
+        "传递商品 ID 列表、收货地址、优惠券等信息",
+        "验证返回订单号和订单详情",
+        "验证库存扣减"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要事务管理"
+    },
+    {
+      "id": "feature-046",
+      "category": "backend",
+      "description": "后端提供订单查询接口（支持按状态筛选）",
+      "priority": "high",
+      "steps": [
+        "调用 GET /api/order/list 接口",
+        "传递订单状态参数（待付款/待收货/已完成等）",
+        "验证返回订单列表",
+        "验证分页功能"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要关联查询订单商品明细"
+    },
+    {
+      "id": "feature-047",
+      "category": "backend",
+      "description": "后端提供订单详情查询接口",
+      "priority": "high",
+      "steps": [
+        "调用 GET /api/order/{id} 接口",
+        "验证返回订单完整信息",
+        "验证包含订单商品明细、配送信息等"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要关联多表查询"
+    },
+    {
+      "id": "feature-048",
+      "category": "backend",
+      "description": "后端提供订单取消接口",
+      "priority": "high",
+      "steps": [
+        "调用 POST /api/order/cancel 接口",
+        "传递订单 ID",
+        "验证订单状态变为已取消",
+        "验证库存回滚"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要事务管理"
+    },
+    {
+      "id": "feature-049",
+      "category": "backend",
+      "description": "后端提供确认收货接口",
+      "priority": "high",
+      "steps": [
+        "调用 POST /api/order/confirm 接口",
+        "传递订单 ID",
+        "验证订单状态变为已完成",
+        "验证积分增加"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要事务管理"
+    },
+    {
+      "id": "feature-050",
+      "category": "backend",
+      "description": "后端提供收货地址管理接口（增删改查）",
+      "priority": "high",
+      "steps": [
+        "调用 POST /api/address/add 新增地址",
+        "调用 PUT /api/address/update 修改地址",
+        "调用 DELETE /api/address/delete 删除地址",
+        "调用 GET /api/address/list 查询地址列表",
+        "验证所有接口返回正确数据"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要支持设置默认地址"
+    },
+    {
+      "id": "feature-051",
+      "category": "backend",
+      "description": "后端提供优惠券管理接口（查询、领取、使用）",
+      "priority": "high",
+      "steps": [
+        "调用 GET /api/coupon/list 查询可用优惠券",
+        "调用 POST /api/coupon/receive 领取优惠券",
+        "调用 POST /api/coupon/use 使用优惠券",
+        "验证所有接口返回正确数据"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要验证优惠券使用条件"
+    },
+    {
+      "id": "feature-052",
+      "category": "backend",
+      "description": "后端提供用户信息管理接口（查询、修改）",
+      "priority": "high",
+      "steps": [
+        "调用 GET /api/user/info 查询用户信息",
+        "调用 PUT /api/user/update 修改用户信息",
+        "验证所有接口返回正确数据"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要验证用户身份"
+    },
+    {
+      "id": "feature-053",
+      "category": "backend",
+      "description": "后端提供积分管理接口（查询、明细）",
+      "priority": "high",
+      "steps": [
+        "调用 GET /api/point/balance 查询积分余额",
+        "调用 GET /api/point/history 查询积分明细",
+        "验证所有接口返回正确数据"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要记录积分变动"
+    },
+    {
+      "id": "feature-054",
+      "category": "backend",
+      "description": "后端提供商品评价接口（提交、查询）",
+      "priority": "medium",
+      "steps": [
+        "调用 POST /api/review/add 提交评价",
+        "调用 GET /api/review/list 查询评价列表",
+        "验证所有接口返回正确数据"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要验证订单状态"
+    },
+    {
+      "id": "feature-055",
+      "category": "backend",
+      "description": "后端提供商品收藏接口（添加、取消、查询）",
+      "priority": "medium",
+      "steps": [
+        "调用 POST /api/favorite/add 添加收藏",
+        "调用 DELETE /api/favorite/remove 取消收藏",
+        "调用 GET /api/favorite/list 查询收藏列表",
+        "验证所有接口返回正确数据"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要验证商品是否存在"
+    },
+    {
+      "id": "feature-056",
+      "category": "backend",
+      "description": "后端提供搜索接口（支持关键词搜索和筛选）",
+      "priority": "medium",
+      "steps": [
+        "调用 GET /api/search 接口",
+        "传递关键词和筛选参数",
+        "验证返回搜索结果",
+        "验证分页功能"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要支持全文检索"
+    },
+    {
+      "id": "feature-057",
+      "category": "backend",
+      "description": "后端提供分类查询接口（树形结构）",
+      "priority": "medium",
+      "steps": [
+        "调用 GET /api/category/tree 接口",
+        "验证返回分类树形结构",
+        "验证包含所有子分类"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要递归查询分类"
+    },
+    {
+      "id": "feature-058",
+      "category": "backend",
+      "description": "后端提供商家查询接口（支持按距离排序）",
+      "priority": "medium",
+      "steps": [
+        "调用 GET /api/shop/list 接口",
+        "传递经纬度参数",
+        "验证返回商家列表",
+        "验证支持按距离排序"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要计算距离"
+    },
+    {
+      "id": "feature-059",
+      "category": "backend",
+      "description": "后端提供支付接口（对接微信支付）",
+      "priority": "high",
+      "steps": [
+        "调用 POST /api/pay/wechat 接口",
+        "传递订单 ID",
+        "验证返回支付参数",
+        "验证支付回调处理"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "需要对接微信支付 API"
+    },
+    {
+      "id": "feature-060",
+      "category": "backend",
+      "description": "后端提供消息推送接口（模拟）",
+      "priority": "low",
+      "steps": [
+        "调用 POST /api/message/push 接口",
+        "传递用户 ID 和消息内容",
+        "验证消息保存",
+        "验证用户可以查询消息"
+      ],
+      "passes": false,
+      "testStatus": "pending",
+      "note": "后续接入真实推送服务"
+    }
+  ]
+}

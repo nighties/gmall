@@ -1,0 +1,40 @@
+﻿# 渚濊禆
+node_modules/
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# 缂栬瘧浜х墿
+dist/
+build/
+*.class
+*.jar
+*.war
+
+# 鏃ュ織
+logs/
+*.log
+
+# 绯荤粺鏂囦欢
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# 鐜閰嶇疆
+.env
+.env.local
+.env.*.local
+application-local.yml
+
+# 涓存椂鏂囦欢
+tmp/
+temp/
+*.tmp
+
+# 鎴浘
+tests/screenshots/
