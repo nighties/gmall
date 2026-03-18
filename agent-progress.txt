@@ -28,20 +28,37 @@
 **工作内容**:
 - ✅ 重构后端为多模块 Spring Boot 项目
 - ✅ 创建父 POM (pom.xml) - 管理依赖版本和模块
-- ✅ 创建 gmall-common 模块 (通用工具、常量、异常)
+- ✅ 创建 gmall-common 模块
   - Result.java (统一返回结果)
   - PageResult.java (分页结果)
-- ✅ 创建 gmall-user 模块 (用户服务)
+- ✅ 创建 gmall-user 模块
   - User.java (用户实体)
   - UserMapper.java (Mapper 接口)
-- ✅ 创建 gmall-product 模块 (商品服务)
-- ✅ 创建 gmall-order 模块 (订单服务)
-- ✅ 创建 gmall-cart 模块 (购物车服务)
-- ✅ 创建 gmall-coupon 模块 (优惠券服务)
+- ✅ 创建 gmall-product/product/order/cart/coupon 模块
 - ✅ 创建 gmall-start 模块 (启动模块)
-  - GmallStartApplication.java (启动类)
-  - application.yml (配置文件)
 - ✅ 创建后端多模块架构文档 (README_MODULES.md)
+
+### Session #3 - 用户模块实现
+**时间**: 2026-03-18  
+**Run ID**: user-001
+
+**工作内容**:
+- ✅ 实现 feature-041：用户注册/登录接口
+- ✅ 创建用户 DTO 类
+  - LoginRequest.java (登录请求)
+  - RegisterRequest.java (注册请求)
+  - UserVO.java (用户信息响应)
+  - LoginResponse.java (登录响应，包含 token)
+- ✅ 创建 JWT 工具类 (JwtUtil.java)
+- ✅ 创建用户服务层
+  - UserService.java (接口)
+  - UserServiceImpl.java (实现类，含注册、登录、获取用户信息、更新用户信息)
+- ✅ 创建用户控制器
+  - UserController.java (REST API 接口)
+- ✅ 创建配置类
+  - UserConfig.java (密码编码器配置)
+  - SwaggerConfig.java (API 文档配置)
+- ✅ 更新 gmall-user 模块 pom.xml (添加依赖)
 
 **功能完成情况**:
 - 总功能数：60
