@@ -38,26 +38,34 @@
 - ✅ 创建 gmall-start 模块 (启动模块)
 - ✅ 创建后端多模块架构文档 (README_MODULES.md)
 
-### Session #5 - 购物车模块实现
+### Session #6 - 订单模块实现
 **时间**: 2026-03-18  
-**Run ID**: cart-001
+**Run ID**: order-001
 
 **工作内容**:
-- ✅ 实现 feature-044：购物车增删改查接口
-- ✅ 创建购物车模块目录结构
-- ✅ 创建购物车实体类和 Mapper
-  - Cart.java (购物车实体，使用雪花算法 ID)
-  - CartMapper.java (Mapper 接口)
-- ✅ 创建购物车 DTO 类
-  - AddToCartRequest.java (加入购物车请求)
-  - UpdateCartRequest.java (更新购物车请求)
-  - CartVO.java (购物车响应)
-- ✅ 创建购物车服务层
-  - CartService.java (接口)
-  - CartServiceImpl.java (实现类)
-  - 功能：添加到购物车、更新数量、删除、查询列表、全选/取消全选
-- ✅ 创建购物车控制器
-  - CartController.java (REST API 接口)
+- ✅ 实现 feature-045：订单创建接口
+- ✅ 实现 feature-046：订单查询接口 (分页、状态筛选)
+- ✅ 实现 feature-047：订单详情查询接口
+- ✅ 实现 feature-048：订单取消接口
+- ✅ 实现 feature-049：确认收货接口
+- ✅ 创建订单模块目录结构
+- ✅ 创建订单实体类和 Mapper
+  - Order.java (订单实体，雪花算法 ID)
+  - OrderItem.java (订单商品实体)
+  - OrderMapper.java
+  - OrderItemMapper.java
+- ✅ 创建订单 DTO 类
+  - CreateOrderRequest.java (创建订单请求)
+  - OrderVO.java (订单详情响应)
+  - OrderItemVO.java (订单商品响应)
+  - AddressVO.java (地址响应)
+- ✅ 创建订单服务层
+  - OrderService.java (接口)
+  - OrderServiceImpl.java (实现类)
+  - 功能：创建订单、查询订单、取消订单、确认收货、删除订单
+- ✅ 创建订单号生成工具类 (OrderNoGenerator)
+- ✅ 创建订单控制器
+  - OrderController.java (REST API 接口)
 - ✅ 创建 pom.xml 配置
 
 **功能完成情况**:
