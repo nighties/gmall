@@ -42,15 +42,31 @@ public class UserController {
 
     @GetMapping("/info")
     @ApiOperation("获取用户信息")
-    public Result<UserVO> getUserInfo(@RequestParam Long userId) {
+    public Result<UserVO> getUserInfo(@RequestParam Long userId, @RequestHeader("Authorization") String token) {
+        Long currentUserId = parseUserIdFromToken(token);
+        if (!currentUserId.equals(userId)) {
+            throw new RuntimeException("无权访问");
+        }
         UserVO userVO = userService.getUserById(userId);
         return Result.success(userVO);
     }
 
     @PutMapping("/update")
     @ApiOperation("更新用户信息")
-    public Result<Void> updateUser(@RequestParam Long userId, @RequestBody UserVO userVO) {
+    public Result<Void> updateUser(@RequestParam Long userId, @RequestBody UserVO userVO, @RequestHeader("Authorization") String token) {
+        Long currentUserId = parseUserIdFromToken(token);
+        if (!currentUserId.equals(userId)) {
+            throw new RuntimeException("无权操作");
+        }
         userService.updateUser(userId, userVO);
         return Result.success("更新成功");
+    }
+
+    private Long parseUserIdFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey("your-secret-key")
+                .parseClaimsJws(token.replace("Bearer ", ""))
+                .getBody();
+        return claims.get("userId", Long.class);
     }
 }

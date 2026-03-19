@@ -140,7 +140,7 @@ CREATE TABLE `address` (
 -- 优惠券表
 DROP TABLE IF EXISTS `coupon`;
 CREATE TABLE `coupon` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '优惠券 ID',
+  `id` bigint(20) NOT NULL COMMENT '优惠券 ID(使用雪花算法生成)',
   `name` varchar(100) NOT NULL COMMENT '优惠券名称',
   `type` tinyint(4) NOT NULL COMMENT '类型 1-满减 2-折扣',
   `amount` decimal(10,2) NOT NULL COMMENT '金额 (满减时有效)',
@@ -162,7 +162,7 @@ CREATE TABLE `coupon` (
 -- 用户优惠券表
 DROP TABLE IF EXISTS `user_coupon`;
 CREATE TABLE `user_coupon` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户优惠券 ID',
+  `id` bigint(20) NOT NULL COMMENT '用户优惠券 ID(使用雪花算法生成)',
   `user_id` bigint(20) NOT NULL COMMENT '用户 ID',
   `coupon_id` bigint(20) NOT NULL COMMENT '优惠券 ID',
   `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '状态 0-未使用 1-已使用 2-已过期',

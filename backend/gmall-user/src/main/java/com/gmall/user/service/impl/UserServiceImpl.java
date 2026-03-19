@@ -24,6 +24,12 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    private static final String USER_NOT_FOUND = "用户不存在";
+    private static final String USER_DISABLED = "用户已被禁用";
+    private static final String USERNAME_EXISTS = "用户名已存在";
+    private static final String PASSWORD_ERROR = "密码错误";
+    private static final String NO_PERMISSION = "无权操作该用户";
+
     private final UserMapper userMapper;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -36,7 +42,7 @@ public class UserServiceImpl implements UserService {
         wrapper.eq(User::getUsername, request.getUsername());
         User existUser = userMapper.selectOne(wrapper);
         if (existUser != null) {
-            throw new RuntimeException("用户名已存在");
+            throw new RuntimeException(USERNAME_EXISTS);
         }
 
         // 创建用户
@@ -69,17 +75,17 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.selectOne(wrapper);
 
         if (user == null) {
-            throw new RuntimeException("用户不存在");
+            throw new RuntimeException(USER_NOT_FOUND);
         }
 
         // 验证密码
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new RuntimeException("密码错误");
+            throw new RuntimeException(PASSWORD_ERROR);
         }
 
         // 检查用户状态
         if (user.getStatus() == 0) {
-            throw new RuntimeException("用户已被禁用");
+            throw new RuntimeException(USER_DISABLED);
         }
 
         // 生成 token
@@ -104,26 +110,17 @@ public class UserServiceImpl implements UserService {
     public UserVO getUserById(Long userId) {
         User user = userMapper.selectById(userId);
         if (user == null) {
-            throw new RuntimeException("用户不存在");
+            throw new RuntimeException(USER_NOT_FOUND);
         }
 
-        UserVO userVO = new UserVO();
-        userVO.setId(user.getId());
-        userVO.setUsername(user.getUsername());
-        userVO.setNickname(user.getNickname());
-        userVO.setAvatar(user.getAvatar());
-        userVO.setPhone(user.getPhone());
-        userVO.setGender(user.getGender());
-        userVO.setPoints(user.getPoints());
-        userVO.setLevel(user.getLevel());
-        return userVO;
+        return convertToUserVO(user);
     }
 
     @Override
     public void updateUser(Long userId, UserVO userVO) {
         User user = userMapper.selectById(userId);
         if (user == null) {
-            throw new RuntimeException("用户不存在");
+            throw new RuntimeException(USER_NOT_FOUND);
         }
 
         if (userVO.getNickname() != null) {
@@ -138,5 +135,18 @@ public class UserServiceImpl implements UserService {
 
         user.setUpdateTime(LocalDateTime.now());
         userMapper.updateById(user);
+    }
+
+    private UserVO convertToUserVO(User user) {
+        UserVO userVO = new UserVO();
+        userVO.setId(user.getId());
+        userVO.setUsername(user.getUsername());
+        userVO.setNickname(user.getNickname());
+        userVO.setAvatar(user.getAvatar());
+        userVO.setPhone(user.getPhone());
+        userVO.setGender(user.getGender());
+        userVO.setPoints(user.getPoints());
+        userVO.setLevel(user.getLevel());
+        return userVO;
     }
 }
