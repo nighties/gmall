@@ -211,7 +211,7 @@ CREATE TABLE `review` (
 -- 商家表
 DROP TABLE IF EXISTS `shop`;
 CREATE TABLE `shop` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '商家 ID',
+  `id` bigint(20) NOT NULL COMMENT '商家 ID',
   `name` varchar(100) NOT NULL COMMENT '商家名称',
   `logo` varchar(255) DEFAULT NULL COMMENT '商家 Logo',
   `description` text COMMENT '商家描述',
@@ -226,6 +226,20 @@ CREATE TABLE `shop` (
   PRIMARY KEY (`id`),
   KEY `idx_status` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商家表';
+
+-- 用户积分明细表
+DROP TABLE IF EXISTS `user_point_history`;
+CREATE TABLE `user_point_history` (
+  `id` bigint(20) NOT NULL COMMENT '积分明细 ID(使用雪花算法生成)',
+  `user_id` bigint(20) NOT NULL COMMENT '用户 ID',
+  `points` int(11) NOT NULL COMMENT '积分变化数量',
+  `change_type` tinyint(4) NOT NULL COMMENT '变更类型 1-签到 2-购物 3-评价 4-退货 5-其他',
+  `description` varchar(255) DEFAULT NULL COMMENT '描述',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_user_id` (`user_id`),
+  KEY `idx_change_type` (`change_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户积分明细表';
 
 -- 插入测试数据
 -- 分类数据
