@@ -1,4 +1,4 @@
-package com.gmall.cart.controller.cart;
+package com.gmall.cart.controller;
 
 import com.gmall.common.Result;
 import com.gmall.cart.dto.AddToCartRequest;

@@ -14,7 +14,7 @@ public class GmallApplication {
     public static void main(String[] args) {
         SpringApplication.run(GmallApplication.class, args);
         System.out.println("====================================");
-        System.out.println("    美团小程序后台启动成功!");
+        System.out.println("    小程序后台启动成功!");
         System.out.println("    API 文档：http://localhost:8080/doc.html");
         System.out.println("====================================");
     }
