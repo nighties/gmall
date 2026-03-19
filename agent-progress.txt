@@ -38,40 +38,69 @@
 - ✅ 创建 gmall-start 模块 (启动模块)
 - ✅ 创建后端多模块架构文档 (README_MODULES.md)
 
-### Session #6 - 订单模块实现
-**时间**: 2026-03-18  
-**Run ID**: order-001
+### Session #7 - 收货地址管理模块实现
+**时间**: 2026-03-19  
+**Run ID**: address-001
 
 **工作内容**:
-- ✅ 实现 feature-045：订单创建接口
-- ✅ 实现 feature-046：订单查询接口 (分页、状态筛选)
-- ✅ 实现 feature-047：订单详情查询接口
-- ✅ 实现 feature-048：订单取消接口
-- ✅ 实现 feature-049：确认收货接口
-- ✅ 创建订单模块目录结构
-- ✅ 创建订单实体类和 Mapper
-  - Order.java (订单实体，雪花算法 ID)
-  - OrderItem.java (订单商品实体)
-  - OrderMapper.java
-  - OrderItemMapper.java
-- ✅ 创建订单 DTO 类
-  - CreateOrderRequest.java (创建订单请求)
-  - OrderVO.java (订单详情响应)
-  - OrderItemVO.java (订单商品响应)
-  - AddressVO.java (地址响应)
-- ✅ 创建订单服务层
-  - OrderService.java (接口)
-  - OrderServiceImpl.java (实现类)
-  - 功能：创建订单、查询订单、取消订单、确认收货、删除订单
-- ✅ 创建订单号生成工具类 (OrderNoGenerator)
-- ✅ 创建订单控制器
-  - OrderController.java (REST API 接口)
-- ✅ 创建 pom.xml 配置
+- ✅ 实现 feature-050：收货地址管理接口（增删改查）
+- ✅ 创建收货地址模块目录结构
+- ✅ 创建收货地址实体类和 Mapper
+  - Address.java (收货地址实体，雪花算法 ID)
+  - AddressMapper.java
+- ✅ 创建收货地址 DTO 类
+  - AddressDTO.java (收货地址请求 DTO)
+- ✅ 创建收货地址服务层
+  - AddressService.java (接口)
+  - AddressServiceImpl.java (实现类)
+  - 功能：新增地址、修改地址、删除地址、查询地址列表、设置默认地址
+- ✅ 创建收货地址控制器
+  - AddressController.java (REST API 接口)
+- ✅ 更新数据库脚本 (docs/db/gmall.sql)
+- ✅ 提交代码到 Git 仓库
 
 **功能完成情况**:
 - 总功能数：60
-- 已完成：0
-- 完成率：0%
+- 已完成：10
+- 完成率：16.7%
+
+**已完成功能列表**:
+- feature-041: 用户注册/登录接口 ✅
+- feature-042: 商品列表查询接口 ✅
+- feature-043: 商品详情查询接口 ✅
+- feature-044: 购物车增删改查接口 ✅
+- feature-045: 订单创建接口 ✅
+- feature-046: 订单查询接口 ✅
+- feature-047: 订单详情查询接口 ✅
+- feature-048: 订单取消接口 ✅
+- feature-049: 确认收货接口 ✅
+- feature-050: 收货地址管理接口 ✅
+
+**API 接口列表**:
+- POST /api/address/add - 新增收货地址
+- PUT /api/address/update - 修改收货地址
+- DELETE /api/address/delete/{id} - 删除收货地址
+- GET /api/address/{id} - 根据 ID 查询地址
+- GET /api/address/list - 查询用户地址列表
+- POST /api/address/default/{id} - 设置默认地址
+
+**核心业务逻辑**:
+1. 新增地址时，如果设置为默认地址，自动取消其他地址的默认状态
+2. 修改地址时，如果设置为默认地址，自动取消其他地址的默认状态（排除当前地址）
+3. 删除地址时进行权限验证，确保只能删除自己的地址
+4. 查询地址列表时，默认地址排在最前面，按更新时间降序排序
+5. 设置默认地址时，先取消当前默认地址，再设置新的默认地址
+
+**技术要点**:
+- 使用雪花算法生成唯一 ID（@TableId(type = IdType.ASSIGN_ID)）
+- 使用 @Transactional 注解保证事务一致性
+- 使用 @Validated 注解进行参数校验
+- 使用 LambdaQueryWrapper 进行类型安全的查询构建
+
+**下一步计划**:
+1. 实现 feature-051：优惠券管理接口
+2. 实现 feature-052：用户信息管理接口
+3. 实现 feature-053：积分管理接口
 
 **项目结构**:
 ```

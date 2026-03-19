@@ -732,8 +732,8 @@
         "调用 GET /api/address/list 查询地址列表",
         "验证所有接口返回正确数据"
       ],
-      "passes": false,
-      "testStatus": "pending",
+      "passes": true,
+      "testStatus": "passed",
       "note": "需要支持设置默认地址"
     },
     {
