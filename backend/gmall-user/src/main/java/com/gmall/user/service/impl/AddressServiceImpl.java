@@ -5,7 +5,6 @@ import com.gmall.user.dto.AddressDTO;
 import com.gmall.user.entity.Address;
 import com.gmall.user.mapper.AddressMapper;
 import com.gmall.user.service.AddressService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +14,10 @@ import java.util.List;
 
 @Service
 public class AddressServiceImpl implements AddressService {
+
+    private static final String ADDRESS_NOT_FOUND = "地址不存在";
+    private static final String NO_PERMISSION = "无权操作该地址";
+    private static final String ADDRESS_NOT_FOUND_OR_NO_PERMISSION = "地址不存在或无权操作";
 
     @Resource
     private AddressMapper addressMapper;
@@ -47,11 +50,11 @@ public class AddressServiceImpl implements AddressService {
     public Address updateAddress(AddressDTO addressDTO) {
         Address oldAddress = addressMapper.selectById(addressDTO.getId());
         if (oldAddress == null) {
-            throw new RuntimeException("地址不存在");
+            throw new RuntimeException(ADDRESS_NOT_FOUND);
         }
 
         if (!oldAddress.getUserId().equals(addressDTO.getUserId())) {
-            throw new RuntimeException("无权操作该地址");
+            throw new RuntimeException(NO_PERMISSION);
         }
 
         if (addressDTO.getIsDefault() != null && addressDTO.getIsDefault() == 1) {
@@ -67,7 +70,29 @@ public class AddressServiceImpl implements AddressService {
         }
 
         Address address = new Address();
-        BeanUtils.copyProperties(addressDTO, address);
+        address.setId(addressDTO.getId());
+        address.setUserId(addressDTO.getUserId());
+        if (addressDTO.getProvince() != null) {
+            address.setProvince(addressDTO.getProvince());
+        }
+        if (addressDTO.getCity() != null) {
+            address.setCity(addressDTO.getCity());
+        }
+        if (addressDTO.getDistrict() != null) {
+            address.setDistrict(addressDTO.getDistrict());
+        }
+        if (addressDTO.getDetail() != null) {
+            address.setDetail(addressDTO.getDetail());
+        }
+        if (addressDTO.getReceiverName() != null) {
+            address.setReceiverName(addressDTO.getReceiverName());
+        }
+        if (addressDTO.getReceiverPhone() != null) {
+            address.setReceiverPhone(addressDTO.getReceiverPhone());
+        }
+        if (addressDTO.getIsDefault() != null) {
+            address.setIsDefault(addressDTO.getIsDefault());
+        }
         address.setUpdateTime(LocalDateTime.now());
 
         addressMapper.updateById(address);
@@ -79,19 +104,23 @@ public class AddressServiceImpl implements AddressService {
     public void deleteAddress(Long id, Long userId) {
         Address address = addressMapper.selectById(id);
         if (address == null) {
-            throw new RuntimeException("地址不存在");
+            throw new RuntimeException(ADDRESS_NOT_FOUND);
         }
 
         if (!address.getUserId().equals(userId)) {
-            throw new RuntimeException("无权操作该地址");
+            throw new RuntimeException(NO_PERMISSION);
         }
 
         addressMapper.deleteById(id);
     }
 
     @Override
-    public Address getAddressById(Long id) {
-        return addressMapper.selectById(id);
+    public Address getAddressById(Long id, Long userId) {
+        Address address = addressMapper.selectById(id);
+        if (address != null && !address.getUserId().equals(userId)) {
+            throw new RuntimeException(NO_PERMISSION);
+        }
+        return address;
     }
 
     @Override
@@ -117,7 +146,7 @@ public class AddressServiceImpl implements AddressService {
 
         Address address = addressMapper.selectById(id);
         if (address == null || !address.getUserId().equals(userId)) {
-            throw new RuntimeException("地址不存在或无权操作");
+            throw new RuntimeException(ADDRESS_NOT_FOUND_OR_NO_PERMISSION);
         }
 
         address.setIsDefault(1);

@@ -36,8 +36,8 @@ public class AddressController {
     }
 
     @GetMapping("/{id}")
-    public Result<Address> getAddressById(@PathVariable Long id) {
-        Address address = addressService.getAddressById(id);
+    public Result<Address> getAddressById(@PathVariable Long id, @RequestParam Long userId) {
+        Address address = addressService.getAddressById(id, userId);
         if (address == null) {
             return Result.fail("地址不存在");
         }

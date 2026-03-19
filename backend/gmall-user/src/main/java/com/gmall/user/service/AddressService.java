@@ -13,7 +13,7 @@ public interface AddressService {
 
     void deleteAddress(Long id, Long userId);
 
-    Address getAddressById(Long id);
+    Address getAddressById(Long id, Long userId);
 
     List<Address> listAddresses(Long userId);
 
