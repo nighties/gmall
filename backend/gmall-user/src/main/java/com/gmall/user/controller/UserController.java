@@ -1,6 +1,6 @@
 package com.gmall.user.controller;
 
-import com.gmall.Result;
+import com.gmall.common.Result;
 import com.gmall.user.dto.LoginRequest;
 import com.gmall.user.dto.LoginResponse;
 import com.gmall.user.dto.RegisterRequest;
@@ -59,7 +59,7 @@ public class UserController {
             throw new RuntimeException("无权操作");
         }
         userService.updateUser(userId, userVO);
-        return Result.success("更新成功");
+        return Result.success(null);
     }
 
     private Long parseUserIdFromToken(String token) {

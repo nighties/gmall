@@ -37,7 +37,14 @@ public class AddressServiceImpl implements AddressService {
         }
 
         Address address = new Address();
-        BeanUtils.copyProperties(addressDTO, address);
+        address.setUserId(addressDTO.getUserId());
+        address.setProvince(addressDTO.getProvince());
+        address.setCity(addressDTO.getCity());
+        address.setDistrict(addressDTO.getDistrict());
+        address.setDetail(addressDTO.getDetail());
+        address.setReceiverName(addressDTO.getReceiverName());
+        address.setReceiverPhone(addressDTO.getReceiverPhone());
+        address.setIsDefault(addressDTO.getIsDefault());
         address.setCreateTime(LocalDateTime.now());
         address.setUpdateTime(LocalDateTime.now());
 

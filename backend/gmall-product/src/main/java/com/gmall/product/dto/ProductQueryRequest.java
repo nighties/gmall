@@ -2,6 +2,8 @@ package com.gmall.product.dto;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 /**
  * 商品查询请求 DTO
  */

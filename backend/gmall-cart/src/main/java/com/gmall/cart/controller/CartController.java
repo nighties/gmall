@@ -1,6 +1,6 @@
-package com.gmall.cart.controller;
+package com.gmall.cart.controller.cart;
 
-import com.gmall.Result;
+import com.gmall.common.Result;
 import com.gmall.cart.dto.AddToCartRequest;
 import com.gmall.cart.dto.CartVO;
 import com.gmall.cart.dto.UpdateCartRequest;
@@ -30,7 +30,7 @@ public class CartController {
             @RequestParam Long userId,
             @Valid @RequestBody AddToCartRequest request) {
         cartService.addToCart(userId, request);
-        return Result.success("添加成功");
+        return Result.success(null);
     }
 
     @PutMapping("/update")
@@ -39,7 +39,7 @@ public class CartController {
             @RequestParam Long userId,
             @Valid @RequestBody UpdateCartRequest request) {
         cartService.updateQuantity(userId, request.getCartId(), request.getQuantity());
-        return Result.success("更新成功");
+        return Result.success(null);
     }
 
     @DeleteMapping("/remove/{cartId}")
@@ -48,7 +48,7 @@ public class CartController {
             @RequestParam Long userId,
             @PathVariable Long cartId) {
         cartService.removeFromCart(userId, cartId);
-        return Result.success("删除成功");
+        return Result.success(null);
     }
 
     @GetMapping("/list")
@@ -71,13 +71,13 @@ public class CartController {
             @RequestParam Long userId,
             @RequestParam Integer checked) {
         cartService.selectAll(userId, checked);
-        return Result.success("操作成功");
+        return Result.success(null);
     }
 
     @DeleteMapping("/delete-checked")
     @ApiOperation("删除选中商品")
     public Result<Void> deleteChecked(@RequestParam Long userId) {
         cartService.deleteChecked(userId);
-        return Result.success("删除成功");
+        return Result.success(null);
     }
 }

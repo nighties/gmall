@@ -1,6 +1,6 @@
 package com.gmall.product.controller;
 
-import com.gmall.Result;
+import com.gmall.common.Result;
 import com.gmall.common.PageResult;
 import com.gmall.product.dto.CategoryVO;
 import com.gmall.product.dto.ProductQueryRequest;
@@ -52,14 +52,14 @@ public class ProductController {
     @ApiOperation("更新商品信息")
     public Result<Void> updateProduct(@RequestBody Product product) {
         productService.updateProduct(product);
-        return Result.success("更新成功");
+        return Result.success(null);
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation("删除商品")
     public Result<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
-        return Result.success("删除成功");
+        return Result.success(null);
     }
 
     @PutMapping("/{id}/status")
@@ -68,7 +68,7 @@ public class ProductController {
             @PathVariable Long id,
             @RequestParam Integer status) {
         productService.updateProductStatus(id, status);
-        return Result.success("操作成功");
+        return Result.success(null);
     }
 
     @GetMapping("/category/tree")

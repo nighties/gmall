@@ -1,6 +1,6 @@
 package com.gmall.order.controller;
 
-import com.gmall.Result;
+import com.gmall.common.Result;
 import com.gmall.common.PageResult;
 import com.gmall.order.dto.CreateOrderRequest;
 import com.gmall.order.dto.OrderVO;
@@ -62,7 +62,7 @@ public class OrderController {
             @PathVariable Long id,
             @RequestParam Long userId) {
         orderService.cancelOrder(id, userId);
-        return Result.success("取消成功");
+        return Result.success(null);
     }
 
     @PostMapping("/confirm/{id}")
@@ -71,7 +71,7 @@ public class OrderController {
             @PathVariable Long id,
             @RequestParam Long userId) {
         orderService.confirmOrder(id, userId);
-        return Result.success("确认成功");
+        return Result.success(null);
     }
 
     @DeleteMapping("/{id}")
@@ -80,6 +80,6 @@ public class OrderController {
             @PathVariable Long id,
             @RequestParam Long userId) {
         orderService.deleteOrder(id, userId);
-        return Result.success("删除成功");
+        return Result.success(null);
     }
 }
