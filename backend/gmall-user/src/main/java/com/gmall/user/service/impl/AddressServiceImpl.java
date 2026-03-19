@@ -72,31 +72,35 @@ public class AddressServiceImpl implements AddressService {
         Address address = new Address();
         address.setId(addressDTO.getId());
         address.setUserId(addressDTO.getUserId());
-        if (addressDTO.getProvince() != null) {
-            address.setProvince(addressDTO.getProvince());
-        }
-        if (addressDTO.getCity() != null) {
-            address.setCity(addressDTO.getCity());
-        }
-        if (addressDTO.getDistrict() != null) {
-            address.setDistrict(addressDTO.getDistrict());
-        }
-        if (addressDTO.getDetail() != null) {
-            address.setDetail(addressDTO.getDetail());
-        }
-        if (addressDTO.getReceiverName() != null) {
-            address.setReceiverName(addressDTO.getReceiverName());
-        }
-        if (addressDTO.getReceiverPhone() != null) {
-            address.setReceiverPhone(addressDTO.getReceiverPhone());
-        }
-        if (addressDTO.getIsDefault() != null) {
-            address.setIsDefault(addressDTO.getIsDefault());
-        }
+        setIfNotNull(address, addressDTO);
         address.setUpdateTime(LocalDateTime.now());
 
         addressMapper.updateById(address);
         return addressMapper.selectById(addressDTO.getId());
+    }
+
+    private void setIfNotNull(Address address, AddressDTO dto) {
+        if (dto.getProvince() != null) {
+            address.setProvince(dto.getProvince());
+        }
+        if (dto.getCity() != null) {
+            address.setCity(dto.getCity());
+        }
+        if (dto.getDistrict() != null) {
+            address.setDistrict(dto.getDistrict());
+        }
+        if (dto.getDetail() != null) {
+            address.setDetail(dto.getDetail());
+        }
+        if (dto.getReceiverName() != null) {
+            address.setReceiverName(dto.getReceiverName());
+        }
+        if (dto.getReceiverPhone() != null) {
+            address.setReceiverPhone(dto.getReceiverPhone());
+        }
+        if (dto.getIsDefault() != null) {
+            address.setIsDefault(dto.getIsDefault());
+        }
     }
 
     @Override
