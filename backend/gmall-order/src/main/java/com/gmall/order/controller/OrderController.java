@@ -47,12 +47,12 @@ public class OrderController {
 
     @GetMapping("/list")
     @ApiOperation("分页查询订单列表")
-    public Result<PageResult<List<OrderVO>>> listOrders(
+    public Result<PageResult<OrderVO>> listOrders(
             @RequestParam Long userId,
             @RequestParam(required = false) Integer status,
             @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize) {
-        PageResult<List<OrderVO>> result = orderService.listOrders(userId, status, pageNum, pageSize);
+        PageResult<OrderVO> result = orderService.listOrders(userId, status, pageNum, pageSize);
         return Result.success(result);
     }
 

@@ -191,7 +191,7 @@ CREATE TABLE `favorite` (
 -- 商品评价表
 DROP TABLE IF EXISTS `review`;
 CREATE TABLE `review` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '评价 ID',
+  `id` bigint(20) NOT NULL COMMENT '评价 ID(使用雪花算法生成)',
   `user_id` bigint(20) NOT NULL COMMENT '用户 ID',
   `product_id` bigint(20) NOT NULL COMMENT '商品 ID',
   `order_id` bigint(20) NOT NULL COMMENT '订单 ID',

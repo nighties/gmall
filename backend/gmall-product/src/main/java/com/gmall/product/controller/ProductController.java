@@ -29,8 +29,8 @@ public class ProductController {
 
     @GetMapping("/list")
     @ApiOperation("分页查询商品列表")
-    public Result<PageResult<List<ProductVO>>> listProducts(ProductQueryRequest request) {
-        PageResult<List<ProductVO>> result = productService.listProducts(request);
+    public Result<PageResult<ProductVO>> listProducts(ProductQueryRequest request) {
+        PageResult<ProductVO> result = productService.listProducts(request);
         return Result.success(result);
     }
 

@@ -31,12 +31,12 @@ public class PageResult<T> {
     /**
      * 数据列表
      */
-    private T list;
+    private java.util.List<T> list;
 
     public PageResult() {
     }
 
-    public PageResult(Long pageNum, Long pageSize, Long total, T list) {
+    public PageResult(Long pageNum, Long pageSize, Long total, java.util.List<T> list) {
         this.pageNum = pageNum;
         this.pageSize = pageSize;
         this.total = total;

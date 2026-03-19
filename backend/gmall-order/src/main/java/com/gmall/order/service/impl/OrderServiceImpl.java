@@ -127,7 +127,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public PageResult<List<OrderVO>> listOrders(Long userId, Integer status, Integer pageNum, Integer pageSize) {
+    public PageResult<OrderVO> listOrders(Long userId, Integer status, Integer pageNum, Integer pageSize) {
         log.info("查询订单列表，用户 ID: {}, 状态：{}", userId, status);
 
         Page<Order> page = new Page<>(pageNum, pageSize);
@@ -146,7 +146,7 @@ public class OrderServiceImpl implements OrderService {
                 .map(this::convertToVO)
                 .collect(Collectors.toList());
 
-        return new PageResult<>(
+        return new PageResult<OrderVO>(
                 orderPage.getCurrent(),
                 orderPage.getSize(),
                 orderPage.getTotal(),

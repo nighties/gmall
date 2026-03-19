@@ -44,7 +44,7 @@ public interface OrderService {
      * @param pageSize 每页数量
      * @return 订单列表
      */
-    PageResult<List<OrderVO>> listOrders(Long userId, Integer status, Integer pageNum, Integer pageSize);
+    PageResult<OrderVO> listOrders(Long userId, Integer status, Integer pageNum, Integer pageSize);
 
     /**
      * 取消订单

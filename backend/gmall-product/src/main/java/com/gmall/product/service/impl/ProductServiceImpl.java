@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     private final ShopMapper shopMapper;
 
     @Override
-    public PageResult<List<ProductVO>> listProducts(ProductQueryRequest request) {
+    public PageResult<ProductVO> listProducts(ProductQueryRequest request) {
         log.info("查询商品列表，请求：{}", request);
 
         // 创建分页对象
@@ -97,7 +97,7 @@ public class ProductServiceImpl implements ProductService {
 
         log.info("查询商品列表成功，总数：{}", productPage.getTotal());
 
-        return new PageResult<>(
+        return new PageResult<ProductVO>(
                 productPage.getCurrent(),
                 productPage.getSize(),
                 productPage.getTotal(),

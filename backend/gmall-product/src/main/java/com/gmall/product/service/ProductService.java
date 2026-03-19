@@ -18,7 +18,7 @@ public interface ProductService {
      * @param request 查询请求
      * @return 商品列表
      */
-    PageResult<List<ProductVO>> listProducts(ProductQueryRequest request);
+    PageResult<ProductVO> listProducts(ProductQueryRequest request);
 
     /**
      * 根据 ID 获取商品详情
