@@ -71,7 +71,6 @@ public class AddressServiceImpl implements AddressService {
 
         Address address = new Address();
         address.setId(addressDTO.getId());
-        address.setUserId(addressDTO.getUserId());
         setIfNotNull(address, addressDTO);
         address.setUpdateTime(LocalDateTime.now());
 
@@ -80,6 +79,9 @@ public class AddressServiceImpl implements AddressService {
     }
 
     private void setIfNotNull(Address address, AddressDTO dto) {
+        if (dto.getUserId() != null) {
+            address.setUserId(dto.getUserId());
+        }
         if (dto.getProvince() != null) {
             address.setProvince(dto.getProvince());
         }
